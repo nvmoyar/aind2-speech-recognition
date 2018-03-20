@@ -11825,7 +11825,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>apt-get install libav-tools
@@ -11845,9 +11845,9 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Reading package lists... Done
-Building dependency tree       
-Reading state information... Done
+<pre>
+
+
 libav-tools is already the newest version (7:2.8.11-0ubuntu0.16.04.1).
 0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
 </pre>
@@ -11860,7 +11860,7 @@ libav-tools is already the newest version (7:2.8.11-0ubuntu0.16.04.1).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">data_generator</span> <span class="k">import</span> <span class="n">vis_train_features</span>
@@ -11903,7 +11903,7 @@ libav-tools is already the newest version (7:2.8.11-0ubuntu0.16.04.1).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">display</span>
@@ -12322,7 +12322,7 @@ EREREZmIATcRERERkYkYcBMRERERmYgBNxERERGRif4fnYQAy2MUmMkAAAAASUVORK5CYII=
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[15]:</div>
+<div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -12356,7 +12356,7 @@ EREREZmIATcRERERkYkYcBMRERERmYgBNxERERGRif4fnYQAy2MUmMkAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">data_generator</span> <span class="k">import</span> <span class="n">plot_spectrogram_feature</span>
@@ -14597,7 +14597,7 @@ nD4LAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">data_generator</span> <span class="k">import</span> <span class="n">plot_mfcc_feature</span>
@@ -15170,7 +15170,7 @@ pZRSamJykJ5SSimllFIT8/8jCf6/k62irgAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#####################################################################</span>
@@ -15197,6 +15197,24 @@ pZRSamJykJ5SSimllFIT8/8jCf6/k62irgAAAABJRU5ErkJggg==
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Using TensorFlow backend.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -15215,13 +15233,44 @@ pZRSamJykJ5SSimllFIT8/8jCf6/k62irgAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_0</span> <span class="o">=</span> <span class="n">simple_rnn_model</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="mi">161</span><span class="p">)</span> <span class="c1"># change to 13 if you would like to use MFCC features</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+the_input (InputLayer)       (None, None, 161)         0         
+_________________________________________________________________
+rnn (GRU)                    (None, None, 29)          16617     
+_________________________________________________________________
+softmax (Activation)         (None, None, 29)          0         
+=================================================================
+Total params: 16,617
+Trainable params: 16,617
+Non-trainable params: 0
+_________________________________________________________________
+None
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -15257,7 +15306,7 @@ pZRSamJykJ5SSimllFIT8/8jCf6/k62irgAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_model</span><span class="p">(</span><span class="n">input_to_softmax</span><span class="o">=</span><span class="n">model_0</span><span class="p">,</span> 
@@ -15267,6 +15316,63 @@ pZRSamJykJ5SSimllFIT8/8jCf6/k62irgAAAABJRU5ErkJggg==
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 1/20
+101/101 [==============================] - 185s - loss: 864.6271 - val_loss: 757.2804
+Epoch 2/20
+101/101 [==============================] - 192s - loss: 779.3502 - val_loss: 754.6652
+Epoch 3/20
+101/101 [==============================] - 191s - loss: 779.1478 - val_loss: 757.4350
+Epoch 4/20
+101/101 [==============================] - 191s - loss: 779.0243 - val_loss: 751.4580
+Epoch 5/20
+101/101 [==============================] - 188s - loss: 779.1397 - val_loss: 758.0787
+Epoch 6/20
+101/101 [==============================] - 188s - loss: 778.0894 - val_loss: 763.9179
+Epoch 7/20
+101/101 [==============================] - 189s - loss: 777.8583 - val_loss: 751.5025
+Epoch 8/20
+101/101 [==============================] - 190s - loss: 777.9930 - val_loss: 752.7926
+Epoch 9/20
+101/101 [==============================] - 190s - loss: 777.6644 - val_loss: 757.5828
+Epoch 10/20
+101/101 [==============================] - 190s - loss: 778.2242 - val_loss: 755.6739
+Epoch 11/20
+101/101 [==============================] - 190s - loss: 777.3577 - val_loss: 754.7526
+Epoch 12/20
+101/101 [==============================] - 189s - loss: 777.4118 - val_loss: 750.5107
+Epoch 13/20
+101/101 [==============================] - 190s - loss: 777.5344 - val_loss: 764.4364
+Epoch 14/20
+101/101 [==============================] - 191s - loss: 777.5377 - val_loss: 745.1109
+Epoch 15/20
+101/101 [==============================] - 189s - loss: 777.1911 - val_loss: 757.4464
+Epoch 16/20
+101/101 [==============================] - 189s - loss: 777.7252 - val_loss: 752.3060
+Epoch 17/20
+101/101 [==============================] - 189s - loss: 777.6198 - val_loss: 758.2510
+Epoch 18/20
+101/101 [==============================] - 189s - loss: 777.8363 - val_loss: 752.0677
+Epoch 19/20
+101/101 [==============================] - 189s - loss: 778.1447 - val_loss: 756.4507
+Epoch 20/20
+101/101 [==============================] - 189s - loss: 778.0957 - val_loss: 758.6770
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -15292,7 +15398,7 @@ pZRSamJykJ5SSimllFIT8/8jCf6/k62irgAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_1</span> <span class="o">=</span> <span class="n">rnn_model</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="mi">161</span><span class="p">,</span> <span class="c1"># change to 13 if you would like to use MFCC features</span>
@@ -15301,6 +15407,41 @@ pZRSamJykJ5SSimllFIT8/8jCf6/k62irgAAAABJRU5ErkJggg==
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+the_input (InputLayer)       (None, None, 161)         0         
+_________________________________________________________________
+rnn (LSTM)                   (None, None, 200)         289600    
+_________________________________________________________________
+batch_normalization_4 (Batch (None, None, 200)         800       
+_________________________________________________________________
+time_distributed_4 (TimeDist (None, None, 29)          5829      
+_________________________________________________________________
+softmax (Activation)         (None, None, 29)          0         
+=================================================================
+Total params: 296,229
+Trainable params: 295,829
+Non-trainable params: 400
+_________________________________________________________________
+None
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -15316,7 +15457,7 @@ pZRSamJykJ5SSimllFIT8/8jCf6/k62irgAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_model</span><span class="p">(</span><span class="n">input_to_softmax</span><span class="o">=</span><span class="n">model_1</span><span class="p">,</span> 
@@ -15326,6 +15467,63 @@ pZRSamJykJ5SSimllFIT8/8jCf6/k62irgAAAABJRU5ErkJggg==
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 1/20
+101/101 [==============================] - 180s - loss: 299.0661 - val_loss: 225.5082
+Epoch 2/20
+101/101 [==============================] - 183s - loss: 233.5591 - val_loss: 225.6405
+Epoch 3/20
+101/101 [==============================] - 181s - loss: 233.6716 - val_loss: 222.6085
+Epoch 4/20
+101/101 [==============================] - 183s - loss: 233.2572 - val_loss: 226.0598
+Epoch 5/20
+101/101 [==============================] - 180s - loss: 233.0626 - val_loss: 221.0625
+Epoch 6/20
+101/101 [==============================] - 180s - loss: 233.1302 - val_loss: 223.9942
+Epoch 7/20
+101/101 [==============================] - 179s - loss: 232.8598 - val_loss: 222.6375
+Epoch 8/20
+101/101 [==============================] - 180s - loss: 233.0625 - val_loss: 222.8511
+Epoch 9/20
+101/101 [==============================] - 180s - loss: 232.9549 - val_loss: 223.9644
+Epoch 10/20
+101/101 [==============================] - 180s - loss: 232.8164 - val_loss: 224.0458
+Epoch 11/20
+101/101 [==============================] - 180s - loss: 232.9279 - val_loss: 221.4725
+Epoch 12/20
+101/101 [==============================] - 182s - loss: 232.6869 - val_loss: 227.2062
+Epoch 13/20
+101/101 [==============================] - 180s - loss: 232.8613 - val_loss: 217.8731
+Epoch 14/20
+101/101 [==============================] - 179s - loss: 232.8912 - val_loss: 223.8392
+Epoch 15/20
+101/101 [==============================] - 180s - loss: 232.9011 - val_loss: 227.4265
+Epoch 16/20
+101/101 [==============================] - 180s - loss: 232.9885 - val_loss: 221.3522
+Epoch 17/20
+101/101 [==============================] - 180s - loss: 232.8379 - val_loss: 225.3091
+Epoch 18/20
+101/101 [==============================] - 181s - loss: 232.8218 - val_loss: 222.7025
+Epoch 19/20
+101/101 [==============================] - 181s - loss: 232.9644 - val_loss: 222.1404
+Epoch 20/20
+101/101 [==============================] - 180s - loss: 232.9853 - val_loss: 221.6949
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -15347,7 +15545,7 @@ pZRSamJykJ5SSimllFIT8/8jCf6/k62irgAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_2</span> <span class="o">=</span> <span class="n">cnn_rnn_model</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="mi">161</span><span class="p">,</span> <span class="c1"># change to 13 if you would like to use MFCC features</span>
@@ -15359,6 +15557,45 @@ pZRSamJykJ5SSimllFIT8/8jCf6/k62irgAAAABJRU5ErkJggg==
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+the_input (InputLayer)       (None, None, 161)         0         
+_________________________________________________________________
+conv1d (Conv1D)              (None, None, 200)         354400    
+_________________________________________________________________
+bn_conv_1d (BatchNormalizati (None, None, 200)         800       
+_________________________________________________________________
+rnn (SimpleRNN)              (None, None, 200)         80200     
+_________________________________________________________________
+batch_normalization_1 (Batch (None, None, 200)         800       
+_________________________________________________________________
+time_distributed_1 (TimeDist (None, None, 29)          5829      
+_________________________________________________________________
+softmax (Activation)         (None, None, 29)          0         
+=================================================================
+Total params: 442,029
+Trainable params: 441,229
+Non-trainable params: 800
+_________________________________________________________________
+None
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -15374,7 +15611,7 @@ pZRSamJykJ5SSimllFIT8/8jCf6/k62irgAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_model</span><span class="p">(</span><span class="n">input_to_softmax</span><span class="o">=</span><span class="n">model_2</span><span class="p">,</span> 
@@ -15384,6 +15621,63 @@ pZRSamJykJ5SSimllFIT8/8jCf6/k62irgAAAABJRU5ErkJggg==
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 1/20
+101/101 [==============================] - 51s - loss: 255.7236 - val_loss: 216.1431
+Epoch 2/20
+101/101 [==============================] - 50s - loss: 191.7105 - val_loss: 213.8229
+Epoch 3/20
+101/101 [==============================] - 49s - loss: 160.0265 - val_loss: 165.7313
+Epoch 4/20
+101/101 [==============================] - 49s - loss: 146.3072 - val_loss: 149.9274
+Epoch 5/20
+101/101 [==============================] - 49s - loss: 137.1679 - val_loss: 144.6454
+Epoch 6/20
+101/101 [==============================] - 49s - loss: 130.0850 - val_loss: 144.0209
+Epoch 7/20
+101/101 [==============================] - 49s - loss: 124.4399 - val_loss: 140.6525
+Epoch 8/20
+101/101 [==============================] - 48s - loss: 119.6580 - val_loss: 138.6603
+Epoch 9/20
+101/101 [==============================] - 48s - loss: 115.4100 - val_loss: 137.4744
+Epoch 10/20
+101/101 [==============================] - 48s - loss: 111.4322 - val_loss: 137.9041
+Epoch 11/20
+101/101 [==============================] - 48s - loss: 107.6595 - val_loss: 138.1984
+Epoch 12/20
+101/101 [==============================] - 48s - loss: 104.3304 - val_loss: 139.1628
+Epoch 13/20
+101/101 [==============================] - 48s - loss: 101.3945 - val_loss: 136.2007
+Epoch 14/20
+101/101 [==============================] - 48s - loss: 97.9442 - val_loss: 140.8270
+Epoch 15/20
+101/101 [==============================] - 48s - loss: 94.9655 - val_loss: 141.8840
+Epoch 16/20
+101/101 [==============================] - 48s - loss: 92.1993 - val_loss: 140.2331
+Epoch 17/20
+101/101 [==============================] - 48s - loss: 89.4155 - val_loss: 143.6899
+Epoch 18/20
+101/101 [==============================] - 48s - loss: 86.6370 - val_loss: 147.2325
+Epoch 19/20
+101/101 [==============================] - 48s - loss: 84.4936 - val_loss: 145.3783
+Epoch 20/20
+101/101 [==============================] - 48s - loss: 81.6329 - val_loss: 148.8697
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -15402,7 +15696,7 @@ pZRSamJykJ5SSimllFIT8/8jCf6/k62irgAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_3</span> <span class="o">=</span> <span class="n">deep_rnn_model</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="mi">161</span><span class="p">,</span> <span class="c1"># change to 13 if you would like to use MFCC features</span>
@@ -15411,6 +15705,45 @@ pZRSamJykJ5SSimllFIT8/8jCf6/k62irgAAAABJRU5ErkJggg==
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+the_input (InputLayer)       (None, None, 161)         0         
+_________________________________________________________________
+rnn_0 (LSTM)                 (None, None, 200)         289600    
+_________________________________________________________________
+bnn_0 (BatchNormalization)   (None, None, 200)         800       
+_________________________________________________________________
+rnn_1 (LSTM)                 (None, None, 200)         320800    
+_________________________________________________________________
+bnn_1 (BatchNormalization)   (None, None, 200)         800       
+_________________________________________________________________
+time_distributed_5 (TimeDist (None, None, 29)          5829      
+_________________________________________________________________
+softmax (Activation)         (None, None, 29)          0         
+=================================================================
+Total params: 617,829
+Trainable params: 617,029
+Non-trainable params: 800
+_________________________________________________________________
+None
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -15436,6 +15769,24 @@ pZRSamJykJ5SSimllFIT8/8jCf6/k62irgAAAABJRU5ErkJggg==
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 1/20
+ 41/101 [===========&gt;..................] - ETA: 153s - loss: 386.4206</pre>
+</div>
+</div>
+
 </div>
 </div>
 
