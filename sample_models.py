@@ -25,20 +25,15 @@ def rnn_model(input_dim, units, activation, output_dim=29):
     """ Build a recurrent network for speech 
     """
     # Main acoustic input
-    input_data = Input(name='the_input', shape=(None, input_dim))
-    
-    # Add recurrent layer **
-    simp_rnn = LSTM(units, activation=activation, return_sequences=True, implementation=2, name='rnn')(input_data)
-    
-    # Add batch normalization  ** 
-    bn_rnn = BatchNormalization()(simp_rnn) 
-    
-    # Add a TimeDistributed(Dense(output_dim)) layer **
-    time_dense = TimeDistributed(Dense(output_dim))(bn_rnn)
-    
+    input_data = Input(name='the_input', shape=(None, input_dim))    
+    # Add recurrent layer
+    simp_rnn = LSTM(units, activation=activation, return_sequences=True, implementation=2, name='rnn')(input_data)    
+    # Add batch normalization 
+    bn_rnn = BatchNormalization()(simp_rnn)     
+    # Add a TimeDistributed(Dense(output_dim)) layer
+    time_dense = TimeDistributed(Dense(output_dim))(bn_rnn)    
     # Add softmax activation layer
-    y_pred = Activation('softmax', name='softmax')(time_dense)
-      
+    y_pred = Activation('softmax', name='softmax')(time_dense)  
     # Specify the model
     model = Model(inputs=input_data, outputs=y_pred)
     model.output_length = lambda x: x
@@ -104,18 +99,18 @@ def deep_rnn_model(input_dim, units, recur_layers, output_dim=29):
     """
     # Main acoustic input
     input_data = Input(name='the_input', shape=(None, input_dim))
-    # TODO: Add recurrent layers, each with batch normalization **
+    rnn_layer = input_data
     
-    # Add recurrent layer **
-    simp_rnn = LSTM(units, activation=activation, return_sequences=True, implementation=2, name='rnn')(input_data)    
-    # Add batch normalization  ** 
-    bn_rnn = BatchNormalization()(simp_rnn) 
-    
-    
-    
-    
-    # TODO: Add a TimeDistributed(Dense(output_dim)) layer
-    time_dense = ...
+    #Add recurrent layers, each with batch normalization    
+    for i in range(recur_layers):
+       
+        # Add recurrent layer
+        rnn_layer = LSTM(units, activation='relu', return_sequences=True, implementation=2, name='rnn_{}'.format(i))(rnn_layer)    
+        # Add batch normalization
+        rnn_layer = BatchNormalization(name="bnn_{}".format(i))(rnn_layer)
+   
+    # Add a TimeDistributed(Dense(output_dim)) layer
+    time_dense = TimeDistributed(Dense(output_dim))(rnn_layer)
     # Add softmax activation layer
     y_pred = Activation('softmax', name='softmax')(time_dense)
     # Specify the model
