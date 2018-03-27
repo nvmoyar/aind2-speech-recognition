@@ -276,7 +276,7 @@ def sort_data(audio_paths, durations, texts):
     texts = [texts[i] for i in p]
     return audio_paths, durations, texts
 
-def vis_train_features(index=0):
+def vis_train_features(index=6):
     """ Visualizing the data point in the training set at the supplied index
     """
     # obtain spectrogram
