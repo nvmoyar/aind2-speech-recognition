@@ -105,7 +105,7 @@ def deep_rnn_model(input_dim, units, recur_layers, output_dim=29):
     #Add recurrent layers, each with batch normalization    
     for i in range(recur_layers):       
         # Add recurrent layer
-        rnn_layer = LSTM(units, activation='relu', return_sequences=True, implementation=2, name='rnn_{}'.format(i))(rnn_layer)   
+        rnn_layer = GRU(units, activation='relu', return_sequences=True, implementation=2, name='rnn_{}'.format(i))(rnn_layer)   
         # Add batch normalization
         rnn_layer = BatchNormalization(name="bnn_{}".format(i))(rnn_layer)
    
@@ -141,7 +141,6 @@ def bidirectional_rnn_model(input_dim, units, output_dim=29):
     print(model.summary())
     return model
 
-# Model 5
 def conv_rnn_model_w_init(input_dim, filters, kernel_size, conv_stride,
     conv_border_mode, units, output_dim=29):
     """ Build a recurrent + convolutional network for speech 
