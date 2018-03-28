@@ -141,24 +141,32 @@ def bidirectional_rnn_model(input_dim, units, output_dim=29):
     print(model.summary())
     return model
 
+
+# Model 5
 def conv_rnn_model_w_init(input_dim, filters, kernel_size, conv_stride,
-    conv_border_mode, units, output_dim=29):
+    conv_border_mode, conv_number, lstm_units, output_dim=29):
     """ Build a recurrent + convolutional network for speech 
     """
     # Main acoustic input
     input_data = Input(name='the_input', shape=(None, input_dim))
-    # Add convolutional layer
-    conv_1d = Conv1D(filters, kernel_size, 
-                     strides=conv_stride, 
-                     padding=conv_border_mode,
-                     activation='relu',
-                     kernel_initializer=RandomUniform(minval=-0.01, maxval=0.01, seed=None),
-                     name='conv1d')(input_data)
-    # Add batch normalization
-    bn_cnn = BatchNormalization(name='bn_conv_1d')(conv_1d)
+    conv_1d = input_data
+    
+    #Add conv_number of convolutional layers + batch normalisation layers   
+    for i in range(conv_number): 
+        # Add convolutional layer
+        conv_1d = Conv1D(filters, kernel_size, 
+                         strides=conv_stride, 
+                         padding=conv_border_mode,
+                         activation='relu',
+                         kernel_initializer=RandomUniform(minval=-0.01, maxval=0.01, seed=None),
+                         name='conv1d_{}'.format(i))(conv_1d)
+        # Add batch normalization
+        conv_1d = BatchNormalization(name='bn_conv_1d_{}'.format(i))(conv_1d)
+        
     # Add a recurrent layer + weight init
-    lstm = LSTM(units, activation='relu',
-        return_sequences=True, implementation=2, name='lstm', kernel_initializer=RandomUniform(minval=-0.01, maxval=0.01, seed=None))(bn_cnn)
+    lstm = LSTM(lstm_units, activation='relu',
+                return_sequences=True, implementation=2, name='lstm', 
+                kernel_initializer=RandomUniform(minval=-0.01, maxval=0.01, seed=None))(conv_1d)
     # Add batch normalization
     bn_rnn = BatchNormalization(name='bn_rnn')(lstm)
     # Add a TimeDistributed(Dense(output_dim)) layer **
