@@ -1,7 +1,7 @@
 from keras import backend as K
 from keras.models import Model
 from keras.layers import (BatchNormalization, Conv1D, Dense, Input, 
-    TimeDistributed, Activation, Bidirectional, SimpleRNN, GRU, LSTM)
+    TimeDistributed, Activation, Bidirectional, SimpleRNN, GRU, LSTM, Dropout, MaxPooling1D)
 from keras.initializers import RandomUniform
 
 # Model  0
@@ -61,19 +61,18 @@ def cnn_rnn_model(input_dim, filters, kernel_size, conv_stride,
         return_sequences=True, implementation=2, name='rnn')(bn_cnn)
     # Add batch normalization
     bn_rnn = BatchNormalization(name='bn_rnn')(simp_rnn)
-    # Add a TimeDistributed(Dense(output_dim)) layer **
+    # Add a TimeDistributed(Dense(output_dim)) layer 
     time_dense = TimeDistributed(Dense(output_dim))(bn_rnn)
     # Add softmax activation layer
     y_pred = Activation('softmax', name='softmax')(time_dense)
     # Specify the model
     model = Model(inputs=input_data, outputs=y_pred)
     model.output_length = lambda x: cnn_output_length(
-        x, kernel_size, conv_border_mode, conv_stride)
+        x, kernel_size, conv_border_mode, conv_stride, dilation=1)
     print(model.summary())
     return model
 
-def cnn_output_length(input_length, filter_size, border_mode, stride,
-                       dilation=1):
+def cnn_output_length(input_length, filter_size, border_mode, stride, dilation):
     """ Compute the length of the output sequence after 1D convolution along
         time. Note that this function is in line with the function used in
         Convolution1D class from Keras.
@@ -86,11 +85,12 @@ def cnn_output_length(input_length, filter_size, border_mode, stride,
     """
     if input_length is None:
         return None
-    assert border_mode in {'same', 'valid'}
+    assert border_mode in {'same', 'valid', 'causal'}
+    if border_mode == 'same' or border_mode == 'valid': dilation = 1
     dilated_filter_size = filter_size + (filter_size - 1) * (dilation - 1)
     if border_mode == 'same':
         output_length = input_length
-    elif border_mode == 'valid':
+    elif border_mode == 'valid' or border_mode == 'causal':
         output_length = input_length - dilated_filter_size + 1
     return (output_length + stride - 1) // stride
 
@@ -126,7 +126,7 @@ def bidirectional_rnn_model(input_dim, units, output_dim=29):
     # Main acoustic input
     input_data = Input(name='the_input', shape=(None, input_dim))
     # Add recurrent layer
-    simp_rnn = LSTM(units, activation='relu', return_sequences=True, implementation=2, name='rnn')
+    simp_rnn = GRU(units, activation='relu', return_sequences=True, implementation=2, name='rnn')
     # Add bidirectional recurrent layer
     bidir_rnn = Bidirectional(simp_rnn)(input_data)
     # Add batch normalization
@@ -141,59 +141,82 @@ def bidirectional_rnn_model(input_dim, units, output_dim=29):
     print(model.summary())
     return model
 
-
 # Model 5
 def conv_rnn_model_w_init(input_dim, filters, kernel_size, conv_stride,
-    conv_border_mode, conv_number, lstm_units, output_dim=29):
-    """ Build a recurrent + convolutional network for speech 
+    conv_border_mode, units, recur_layers, output_dim=29):
+    
+    """ Build convolutional network + custom number of rnn layers
     """
     # Main acoustic input
     input_data = Input(name='the_input', shape=(None, input_dim))
-    conv_1d = input_data
-    
-    #Add conv_number of convolutional layers + batch normalisation layers   
-    for i in range(conv_number): 
-        # Add convolutional layer
-        conv_1d = Conv1D(filters, kernel_size, 
-                         strides=conv_stride, 
-                         padding=conv_border_mode,
-                         activation='relu',
-                         kernel_initializer=RandomUniform(minval=-0.01, maxval=0.01, seed=None),
-                         name='conv1d_{}'.format(i))(conv_1d)
-        # Add batch normalization
-        conv_1d = BatchNormalization(name='bn_conv_1d_{}'.format(i))(conv_1d)
-        
-    # Add a recurrent layer + weight init
-    lstm = LSTM(lstm_units, activation='relu',
-                return_sequences=True, implementation=2, name='lstm', 
-                kernel_initializer=RandomUniform(minval=-0.01, maxval=0.01, seed=None))(conv_1d)
+    # Add convolutional layer
+    conv_1d = Conv1D(filters, kernel_size, 
+                     strides=conv_stride, 
+                     padding=conv_border_mode,
+                     activation='relu',
+                     kernel_initializer=RandomUniform(minval=-0.1, maxval=0.1, seed=None),
+                     name='conv1d')(input_data)
     # Add batch normalization
-    bn_rnn = BatchNormalization(name='bn_rnn')(lstm)
+    bn_cnn = BatchNormalization(name='bn_conv_1d')(conv_1d)
+    # Initialise rnn_layer
+    rnn_layer = bn_cnn
+    #Add recurrent layers, each with batch normalization    
+    for i in range(recur_layers):       
+        # Add recurrent layer
+        rnn_layer = GRU(units, activation='relu', return_sequences=True, implementation=2,
+                        kernel_initializer=RandomUniform(minval=-0.1, maxval=0.1, seed=None),
+                        name='rnn_{}'.format(i))(rnn_layer)   
+        # Add batch normalization
+        rnn_layer = BatchNormalization(name="bnn_{}".format(i))(rnn_layer)
+    
     # Add a TimeDistributed(Dense(output_dim)) layer **
-    time_dense = TimeDistributed(Dense(output_dim))(bn_rnn)
+    time_dense = TimeDistributed(Dense(output_dim))(rnn_layer)
     # Add softmax activation layer
     y_pred = Activation('softmax', name='softmax')(time_dense)
     # Specify the model
     model = Model(inputs=input_data, outputs=y_pred)
     model.output_length = lambda x: cnn_output_length(
-        x, kernel_size, conv_border_mode, conv_stride)
+        x, kernel_size, conv_border_mode, conv_stride, dilation=1)
     print(model.summary())
     return model
 
-
 # Model 6
-def final_model(input_dim, units, output_dim=29):
-    """ Build a deep network for speech 
-    """
+def final_model(input_dim, filters, kernel_size, conv_border_mode, units, recur_layers, n_dilation, output_dim=29):
+    """ Build dilated convolution network + custom number of rnn layers
+    """ 
     # Main acoustic input
     input_data = Input(name='the_input', shape=(None, input_dim))
-    # TODO: Specify the layers in your network
-    ...
-    # TODO: Add softmax activation layer
-    y_pred = ...
+    # Add convolutional layer
+    conv_1d = Conv1D(filters, 
+                     kernel_size, 
+                     padding=conv_border_mode,
+                     activation='relu',
+                     dilation_rate=n_dilation,
+                     kernel_initializer=RandomUniform(minval=-0.1, maxval=0.1, seed=None),
+                     name='conv1d')(input_data)
+    # Pooling layer
+    pool_layer = MaxPooling1D(pool_size=2, strides=1)(conv_1d)
+    # Add batch normalization
+    bn_cnn = BatchNormalization(name='bn_conv_1d')(conv_1d)
+    # Initialise rnn_layer
+    rnn_layer = bn_cnn
+    # Add a customisable number of recurrent layers, each with batch normalization    
+    for i in range(recur_layers):       
+        # Add recurrent layer
+        rnn_layer = GRU(units, activation='relu', return_sequences=True, implementation=2,
+                        kernel_initializer=RandomUniform(minval=-0.1, maxval=0.1, seed=None),
+                        dropout=0.2,
+                        name='rnn_{}'.format(i))(rnn_layer)   
+        # Add batch normalization
+        rnn_layer = BatchNormalization(name="bnn_{}".format(i))(rnn_layer)
+    
+    # Add a TimeDistributed(Dense(output_dim)) layer 
+    time_dense = TimeDistributed(Dense(output_dim))(rnn_layer)
+    # Add softmax activation layer
+    y_pred = Activation('softmax', name='softmax')(time_dense)
     # Specify the model
     model = Model(inputs=input_data, outputs=y_pred)
-    # TODO: Specify model.output_length
-    model.output_length = ...
+    # def cnn_output_length(input_length, filter_size, border_mode, stride, dilation):
+    model.output_length = lambda x: cnn_output_length(x, kernel_size, conv_border_mode, stride=1, dilation=n_dilation)
     print(model.summary())
     return model
