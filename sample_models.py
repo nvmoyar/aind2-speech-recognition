@@ -79,7 +79,7 @@ def cnn_output_length(input_length, filter_size, border_mode, stride, dilation):
     Params:
         input_length (int): Length of the input sequence.
         filter_size (int): Width of the convolution kernel.
-        border_mode (str): Only support `same` or `valid`.
+        border_mode (str): `same`, `valid`, `causal`.
         stride (int): Stride size used in 1D convolution.
         dilation (int)
     """
@@ -180,7 +180,8 @@ def conv_rnn_model_w_init(input_dim, filters, kernel_size, conv_stride,
     print(model.summary())
     return model
 
-# Model 6
+
+# Final model
 def final_model(input_dim, filters, kernel_size, conv_border_mode, units, recur_layers, n_dilation, output_dim=29):
     """ Build dilated convolution network + custom number of rnn layers
     """ 
@@ -197,7 +198,7 @@ def final_model(input_dim, filters, kernel_size, conv_border_mode, units, recur_
     # Pooling layer
     pool_layer = MaxPooling1D(pool_size=2, strides=1)(conv_1d)
     # Add batch normalization
-    bn_cnn = BatchNormalization(name='bn_conv_1d')(conv_1d)
+    bn_cnn = BatchNormalization(name='bn_conv_1d')(pool_layer)
     # Initialise rnn_layer
     rnn_layer = bn_cnn
     # Add a customisable number of recurrent layers, each with batch normalization    
