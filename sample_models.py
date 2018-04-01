@@ -126,7 +126,7 @@ def bidirectional_rnn_model(input_dim, units, output_dim=29):
     # Main acoustic input
     input_data = Input(name='the_input', shape=(None, input_dim))
     # Add recurrent layer
-    simp_rnn = GRU(units, activation='relu', return_sequences=True, implementation=2, name='rnn')
+    simp_rnn = LSTM(units, activation='relu', return_sequences=True, implementation=2, name='rnn')
     # Add bidirectional recurrent layer
     bidir_rnn = Bidirectional(simp_rnn)(input_data)
     # Add batch normalization
@@ -140,6 +140,7 @@ def bidirectional_rnn_model(input_dim, units, output_dim=29):
     model.output_length = lambda x: x
     print(model.summary())
     return model
+
 
 # Model 5
 def conv_rnn_model_w_init(input_dim, filters, kernel_size, conv_stride,
