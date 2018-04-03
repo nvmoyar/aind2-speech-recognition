@@ -11,7 +11,7 @@ def simple_rnn_model(input_dim, output_dim=29):
     # Main acoustic input
     input_data = Input(name='the_input', shape=(None, input_dim))
     # Add recurrent layer
-    simp_rnn = GRU(output_dim, return_sequences=True, 
+    simp_rnn = SimpleRNN(output_dim, return_sequences=True, 
                  implementation=2, name='rnn')(input_data)
     # Add softmax activation layer
     y_pred = Activation('softmax', name='softmax')(simp_rnn)
@@ -28,7 +28,7 @@ def rnn_model(input_dim, units, activation, output_dim=29):
     # Main acoustic input
     input_data = Input(name='the_input', shape=(None, input_dim))    
     # Add recurrent layer
-    simp_rnn = LSTM(units, activation=activation, return_sequences=True, implementation=2, name='rnn')(input_data)    
+    simp_rnn = SimpleRNN(units, activation=activation, return_sequences=True, implementation=2, name='rnn')(input_data)    
     # Add batch normalization 
     bn_rnn = BatchNormalization(name='bn_rnn')(simp_rnn)     
     # Add a TimeDistributed(Dense(output_dim)) layer
