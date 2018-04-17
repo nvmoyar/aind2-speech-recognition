@@ -1,11 +1,15 @@
+# Artificial Intelligence Engineer Nanodegree
+
 [//]: # (Image References)
 
 [image1]: ./images/ASR_screenshot.png "ASR Screenshot"
 
 
-## Project Overview
+## Different Deep Learning approaches to an Acoustic model for an ASR pipeline
 
-In this notebook, several approaches are used to build the acoustic model for an end-to-end automatic speech recognition (ASR) pipeline:
+### Project overview
+
+In this notebook, some different approaches are used to build the acoustic model for an end-to-end automatic speech recognition (ASR) pipeline:
 
 * Model 0: RNN
 * Model 1: RNN + TimeDistributed Dense
@@ -34,6 +38,6 @@ The third part shows a predicted transcription based on the probability distribu
 * [Demo](https://www.floydhub.com/nvmoyar/projects/speech-recognition)
 
 
-## Special Thanks
+### Special Thanks
 
 We have borrowed the `create_desc_json.py` and `flac_to_wav.sh` files from the [ba-dls-deepspeech](https://github.com/baidu-research/ba-dls-deepspeech) repository, along with some functions used to generate spectrograms.
