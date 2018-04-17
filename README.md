@@ -17,13 +17,21 @@ In this notebook, several approaches are used to build the acoustic model for an
 * Final Model: Dilated Convolution + Deep RNN + TimeDistributed Dense 
 * Discussion of final model architecture 
 
+The first part of this notebook investigates the [LibriSpeech](http://www.danielpovey.com/files/2015_icassp_librispeech.pdf), the dataset that will be used to train and evaluate this pipeline. The wav signal is preprocessed in order to obtain frequencies and MFCC features. The final discussion includes observations about using either tensor as input features for the pipeline. 
+
+```sample_models.py``` module, includes code for all the models. Once this module is imported in the notebook, the different architectures are trained within the notebook. 
+
+The second and longest part of the notebook includes discussion about the performance of all the models and compares results on using spectrogram or MFCC features.
+
+The third part shows a predicted transcription based on the probability distribution of the chosen acoustic models, the output on the second part of the notebook. 
+
 ![ASR Screenshot][image1]
 
 ### Install environment, Test
 
-[Install instructions](https://github.com/udacity/AIND-VUI-Capstone)
-[Test](http://localhost:4000/jekyll-uno/AIND-VUI-Capstone)
-[Demo](https://www.floydhub.com/nvmoyar/projects/speech-recognition)
+* [Install instructions](https://github.com/udacity/AIND-VUI-Capstone)
+* [Test](http://localhost:4000/jekyll-uno/AIND-VUI-Capstone)
+* [Demo](https://www.floydhub.com/nvmoyar/projects/speech-recognition)
 
 
 ## Special Thanks
