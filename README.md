@@ -34,7 +34,7 @@ The third part shows a predicted transcription based on the probability distribu
 ### Install environment, Test
 
 * [Install instructions](https://github.com/udacity/AIND-VUI-Capstone)
-* [Test](http://localhost:8888/notebooks/vui_notebook.ipynb)
+* [Test](http://localhost:8888/notebooks/AIND-VUI-Capstone/vui_notebook.ipynb)
 * [Demo](https://www.floydhub.com/nvmoyar/projects/speech-recognition)
 
 
