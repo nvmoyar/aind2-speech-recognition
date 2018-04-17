@@ -34,10 +34,10 @@ The third part shows a predicted transcription based on the probability distribu
 ### Install environment, Test
 
 * [Install instructions](https://github.com/udacity/AIND-VUI-Capstone)
-* [Test](http://localhost:4000/jekyll-uno/AIND-VUI-Capstone)
+* [Test](http://localhost:8888/notebooks/vui_notebook.ipynb)
 * [Demo](https://www.floydhub.com/nvmoyar/projects/speech-recognition)
 
 
 ### Special Thanks
 
-We have borrowed the `create_desc_json.py` and `flac_to_wav.sh` files from the [ba-dls-deepspeech](https://github.com/baidu-research/ba-dls-deepspeech) repository, along with some functions used to generate spectrograms.
+We(Udacity) have borrowed the `create_desc_json.py` and `flac_to_wav.sh` files from the [ba-dls-deepspeech](https://github.com/baidu-research/ba-dls-deepspeech) repository, along with some functions used to generate spectrograms.
