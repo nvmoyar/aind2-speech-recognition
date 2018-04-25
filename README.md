@@ -4,7 +4,6 @@
 
 [image1]: ./images/ASR_screenshot.png "ASR Screenshot"
 
-
 ## Different Deep Learning approaches to an Acoustic model for an ASR pipeline
 
 ### Project overview
@@ -20,6 +19,7 @@ In this notebook, some different approaches are used to build the acoustic model
 * Models Comparison and discussion of the models 1, 2, 3, 4 and 5
 * Final Model: Dilated Convolution + Deep RNN + TimeDistributed Dense 
 * Discussion of final model architecture 
+
 
 The first part of this notebook investigates the [LibriSpeech](http://www.danielpovey.com/files/2015_icassp_librispeech.pdf), the dataset that will be used to train and evaluate this pipeline. The wav signal is preprocessed in order to obtain frequencies and MFCC features. The final discussion includes observations about using either tensor as input features for the pipeline. 
 
